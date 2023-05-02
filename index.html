@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Book Summary</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="header">Summary-GPT</h1>
+    <form id="title-form">
+        <h3>Book title:</h3>
+        <input type="text" class="title-form-input" id="book-title-input" placeholder="Enter book title here...">
+        <button id="generate-btn">Generate Summary</button>
+    </form>
+    <div id="spinner" class="spinner">
+       <h4> your book is being summerized...</h4>
+        <span class="dots">
+        <div class="dot1"></div>
+        <div class="dot2"></div>
+    </span>
+      </div>
+      <h4 class="my-books-label">My Books:</h4>
+      <br/>
+      <ul id="book-list"></ul>
+    <div id="summary-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2 id="book-title"></h2>
+            <div id="summary"></div>
+            <div class="modal-buttons">
+                <button id="save-btn">Save</button>
+                <button id="delete-btn">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <script src="app.js"></script>
+</body>
+</html>
+
