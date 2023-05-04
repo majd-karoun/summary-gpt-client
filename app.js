@@ -55,7 +55,7 @@ bookTitleElement.addEventListener("DOMSubtreeModified", () => {
 
 async function fetchSummary(bookTitle, language) {
   const response = await fetch(
-    "http://localhost:3000/api/summarize",
+    "https://summary-gpt.onrender.com/api/summarize",
     {
       method: "POST",
       headers: {
