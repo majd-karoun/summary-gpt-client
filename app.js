@@ -86,9 +86,11 @@ generateBtn.addEventListener("click", async (e) => {
 // Add a new book to localStorage
 function saveBook(title, summary, color) {
   const book = { title, summary, color };
-  savedBooks.push(book);
+  savedBooks.unshift(book); // Use unshift() instead of push() to add the book to the beginning of the array
   localStorage.setItem("books", JSON.stringify(savedBooks));
 }
+
+
 
 // Generate a list of buttons for each saved book title
 savedBooks.forEach((book) => {
@@ -108,7 +110,7 @@ savedBooks.forEach((book) => {
   // Use the saved color for the button
   button.style.backgroundColor = book.color;
   
-  bookList.appendChild(button);
+  bookList.prepend(button); // Use prepend() instead of appendChild() to add the button to the beginning of the list
 });
 
 // Generate random dark color
