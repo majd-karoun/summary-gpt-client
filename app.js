@@ -6,6 +6,7 @@ let bookTitleElement = document.getElementById('book-title');
 let summaryModal = document.getElementById('summary-modal');
 let closeBtn = summaryModal.getElementsByClassName('close')[0];
 let saveBtn = document.getElementById('save-btn');
+const closeModalBtn = document.getElementById('close-modal-btn');
 let deleteBtn = document.getElementById('delete-btn');
 const spinner = document.getElementById("spinner");
 const bookList = document.getElementById('book-list');
@@ -49,8 +50,9 @@ savedBooks.forEach((book) => {
     summaryModal.style.display = 'block';
     summaryElement.innerHTML = book.summary;
     bookTitleElement.innerHTML = book.title;
-    //hide savebtn
+    //hide savebtn and show close button
     saveBtn.style.display = 'none';
+    closeModalBtn.style.display = 'block';
   });
 
   // Use the saved color for the button
@@ -68,7 +70,9 @@ generateBtn.addEventListener('click', async (e) => {
     summaryModal.style.display = 'block';
     summaryElement.innerHTML = summary;
     bookTitleElement.innerHTML = bookTitle;
+     // Show the Save button and hide the Close button
     saveBtn.style.display = 'block';
+    closeModalBtn.style.display = 'none';
 });
 
 
@@ -81,6 +85,7 @@ function generateRandomColor() {
   const blue = Math.floor(Math.random() * 51);
   return `rgb(${red}, ${green}, ${blue})`;
 }
+
 // Handle save button click
 saveBtn.addEventListener('click', () => {
   const summary = summaryElement.innerHTML;
@@ -136,6 +141,16 @@ async function fetchSummary(bookTitle) {
 }
 
 closeBtn.addEventListener('click', () => {
+  summaryModal.classList.add('modal-out');
+  setTimeout(() => {
+    summaryModal.style.display = 'none';
+    summaryModal.classList.remove('modal-out');
+    summaryElement.innerHTML = '';
+  }, 500);
+});
+
+// Handle Close modal button click
+closeModalBtn.addEventListener('click', () => {
   summaryModal.classList.add('modal-out');
   setTimeout(() => {
     summaryModal.style.display = 'none';
