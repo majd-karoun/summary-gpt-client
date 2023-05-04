@@ -51,6 +51,14 @@ body {
    
 }
 
+/* Button transitions */
+
+
+
+button{
+  cursor: pointer;
+}
+
 #generate-btn{
     background-color: #11AD59;
     border-radius: 5px;
@@ -58,9 +66,12 @@ body {
     color: white;
     font-weight: 500;
     font-size: 1rem;
-
+    
     
     padding: 10px;
+}
+#generate-btn:hover{
+  background-color: #186e40;
 }
 
 #book-list {
@@ -84,6 +95,11 @@ body {
     border: solid 5px rgb(195, 193, 193);
   }
 
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+
 .modal {
     display: none;
     position: fixed;
@@ -95,8 +111,40 @@ body {
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.4);
   }
+  /* Modal animation */
+@keyframes modalIn {
+  from {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+
+@keyframes modalOut {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-50%);
+    opacity: 0;
+  }
+}
+
+.modal-out {
+  animation: modalOut 0.5s forwards;
+}
+
+
+
+
   
   .modal-content {
+    animation: modalIn 0.5s;
     background-color: rgb(51, 55, 58);
     margin: 15% auto;
     padding: 20px;
@@ -163,9 +211,22 @@ body {
     0%, 80%, 100% { transform: scale(0); }
     40% { transform: scale(1.0); }
   }
-  .spinner{
-    display: none;
+ /* Spinner animation */
+@keyframes spinnerIn {
+  from {
+    transform: translateY(50%);
+    opacity: 0;
   }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.spinner {
+  animation: spinnerIn 0.5s;
+  display: none;
+}
   .dots {
     margin: 10px auto;
     width: 40px;
@@ -230,6 +291,7 @@ body {
     margin: 10% auto;
   }
 }
+
 
 @media (max-width: 480px) {
   .header {

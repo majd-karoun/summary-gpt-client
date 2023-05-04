@@ -59,10 +59,7 @@ generateBtn.addEventListener('click', async (e) => {
     saveBtn.style.display = 'block';
 });
 
-closeBtn.addEventListener('click', () => {
-    summaryModal.style.display = 'none';
-    summaryElement.innerHTML = '';
-});
+
 
 
 // Generate random dark color
@@ -81,6 +78,7 @@ saveBtn.addEventListener('click', () => {
     // Refresh the book list
     location.reload();
   }
+
 });
 
 
@@ -107,7 +105,7 @@ deleteBtn.addEventListener('click', () => {
 
 
 async function fetchSummary(bookTitle) {
-    const response = await fetch('http://localhost:3000/api/summarize', {
+    const response = await fetch('https://summary-gpt.onrender.com/api/summarize', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -123,6 +121,11 @@ async function fetchSummary(bookTitle) {
     }
 }
 
-
-
-
+closeBtn.addEventListener('click', () => {
+  summaryModal.classList.add('modal-out');
+  setTimeout(() => {
+    summaryModal.style.display = 'none';
+    summaryModal.classList.remove('modal-out');
+    summaryElement.innerHTML = '';
+  }, 500);
+});
