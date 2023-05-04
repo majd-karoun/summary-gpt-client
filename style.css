@@ -50,6 +50,17 @@ body {
     padding: 10px;
    
 }
+#language-picker{
+  width:100px;
+    margin-inline: 10px;
+    border-radius: 5px;
+    border: none;
+    color: rgb(0, 0, 0);
+    font-weight: 300;
+    font-size: 1.1rem;
+    padding: 10px;
+   
+}
 
 /* Button transitions */
 

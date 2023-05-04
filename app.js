@@ -11,8 +11,44 @@ let deleteBtn = document.getElementById('delete-btn');
 const spinner = document.getElementById("spinner");
 const bookList = document.getElementById('book-list');
 const myBooksLabel = document.getElementById('my-books-label');
+const languagePicker = document.getElementById('language-picker');
+
 // Retrieve saved books from localStorage
 const savedBooks = JSON.parse(localStorage.getItem('books')) || [];
+
+async function fetchSummary(bookTitle, language) {
+  const response = await fetch('https://summary-gpt.onrender.com/api/summarize', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },    
+    body: JSON.stringify({ bookTitle, language }) // Add language to the request body
+  });    
+  const data = await response.json();
+  if (data) {
+    return data;
+  } else {  
+    console.error("Unexpected data format:", data);
+    return "An error occurred while fetching the summary. Please try again.";
+  }    
+}  
+
+
+generateBtn.addEventListener('click', async (e) => {
+e.preventDefault();
+spinner.style.display = "block"; // show the spinner
+bookTitle = bookInput.value; // Get current input value
+const language = languagePicker.value; // Get the selected language
+const summary = await fetchSummary(bookTitle, language); // Pass the language to fetchSummary
+spinner.style.display = "none";
+summaryModal.style.display = 'block';
+summaryElement.innerHTML = summary;
+bookTitleElement.innerHTML = bookTitle;
+ // Show the Save button and hide the Close button
+saveBtn.style.display = 'block';
+closeModalBtn.style.display = 'none';
+});
+
 
 //hide "My Books" label if no books yet saved
 function updateMyBooksLabel() {
@@ -20,8 +56,8 @@ function updateMyBooksLabel() {
     myBooksLabel.style.display = 'none';
   } else {
     myBooksLabel.style.display = 'block';
-  }
-}
+  }  
+}  
 updateMyBooksLabel();
 
 
@@ -29,7 +65,7 @@ let bookTitle;
 // Update bookTitle when input value changes
 bookInput.addEventListener('change', () => {
     bookTitle = bookInput.value;
-});
+});    
 
 
 // Add a new book to localStorage
@@ -37,7 +73,7 @@ function saveBook(title, summary, color) {
   const book = { title, summary, color };
   savedBooks.push(book);
   localStorage.setItem('books', JSON.stringify(savedBooks));
-}
+}  
 
 
 // Generate a list of buttons for each saved book title
@@ -53,27 +89,13 @@ savedBooks.forEach((book) => {
     //hide savebtn and show close button
     saveBtn.style.display = 'none';
     closeModalBtn.style.display = 'block';
-  });
+  });  
 
   // Use the saved color for the button
   button.style.backgroundColor = book.color;
   bookList.appendChild(button);
-});
+});  
 
-  
-generateBtn.addEventListener('click', async (e) => {
-    e.preventDefault();
-    spinner.style.display = "block"; // show the spinner
-    bookTitle = bookInput.value; // Get current input value
-    const summary = await fetchSummary(bookTitle);
-    spinner.style.display = "none"; 
-    summaryModal.style.display = 'block';
-    summaryElement.innerHTML = summary;
-    bookTitleElement.innerHTML = bookTitle;
-     // Show the Save button and hide the Close button
-    saveBtn.style.display = 'block';
-    closeModalBtn.style.display = 'none';
-});
 
 
 
@@ -123,22 +145,6 @@ deleteBtn.addEventListener('click', () => {
 
 
 
-async function fetchSummary(bookTitle) {
-    const response = await fetch('https://summary-gpt.onrender.com/api/summarize', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ bookTitle })
-    });
-    const data = await response.json();
-    if (data) {
-        return data 
-    } else {
-        console.error("Unexpected data format:", data);
-        return "An error occurred while fetching the summary. Please try again.";
-    }
-}
 
 closeBtn.addEventListener('click', () => {
   summaryModal.classList.add('modal-out');

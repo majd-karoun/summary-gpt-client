@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,7 +10,8 @@
     <link rel="manifest" href="/site.webmanifest">
      
 
-
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.3.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.3.0-rc.0/dist/js/select2.min.js"></script>
   
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -27,10 +30,48 @@
           class="title-form-input"
           id="book-title-input"
           placeholder="Enter book title here..." />
+          
+            <h3>Language:</h3>
+            <select id="language-picker">
+              <option value="ar">العربية</option>
+              <option value="bn">বাংলা</option>
+              <option value="zh">中文</option>
+              <option value="nl">Nederlands</option>
+              <option value="en" selected>English</option>
+              <option value="fil">Filipino</option>
+              <option value="fi">Suomi</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="el">Ελληνικά</option>
+              <option value="he">עברית</option>
+              <option value="hi">हिन्दी</option>
+              <option value="hu">Magyar</option>
+              <option value="id">Bahasa Indonesia</option>
+              <option value="it">Italiano</option>
+              <option value="ja">日本語</option>
+              <option value="ko">한국어</option>
+              <option value="ms">Bahasa Melayu</option>
+              <option value="fa">فارسی</option>
+              <option value="pl">Polski</option>
+              <option value="pt">Português</option>
+              <option value="pa">ਪੰਜਾਬੀ</option>
+              <option value="ro">Română</option>
+              <option value="ru">Русский</option>
+              <option value="sr">Српски</option>
+              <option value="sk">Slovenčina</option>
+              <option value="sl">Slovenščina</option>
+              <option value="es">Español</option>
+              <option value="sv">Svenska</option>
+              <option value="th">ไทย</option>
+              <option value="tr">Türkçe</option>
+              <option value="uk">Українська</option>
+              <option value="ur">اردو</option>
+              <option value="vi">Tiếng Việt</option>
+            </select>
         <button id="generate-btn">Generate Summary</button>
       </form>
       <div id="spinner" class="spinner">
-        <h4>your book is being summerized...</h4>
+        <h4>your book is being summarized...</h4>
         <span class="dots">
           <div class="dot1"></div>
           <div class="dot2"></div>
