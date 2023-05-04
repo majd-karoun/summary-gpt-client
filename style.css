@@ -50,6 +50,12 @@ body {
     padding: 10px;
    
 }
+.language-picker-container{
+  display: flex;
+align-items: center;
+ 
+
+}
 #language-picker{
   width:100px;
     margin-inline: 10px;
@@ -97,7 +103,19 @@ button{
     align-items: center;
     max-width: 800px;
   }
-  
+  @keyframes fadeIn {
+    from {
+      opacity: 0.0;
+      transform: translateY(20px);
+      scale: 0.6;
+    }
+    to {
+      scale: 1;
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .card {
     height: 200px;
     width: 150px;
@@ -107,6 +125,7 @@ button{
     word-wrap: break-word;
     border-radius: 5px;
     border: solid 5px rgb(195, 193, 193);
+    animation: fadeIn 0.3s ease-out;
   }
 
   .card:hover {
@@ -284,7 +303,17 @@ button{
   #title-form {
     flex-direction: column;
     align-items: flex-start;
+    width: 80%;
   }
+  .language-picker-container{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+   
+    margin-bottom: 10px;
+  }
+
 
   .title-form-input {
     margin-inline: 0;
@@ -296,9 +325,7 @@ button{
     width: 100%;
   }
 
-  #book-list {
-    flex-direction: column;
-  }
+
 
   .modal-content {
     width: 90%;

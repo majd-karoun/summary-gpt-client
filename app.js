@@ -107,6 +107,7 @@ savedBooks.forEach((book) => {
 
   // Use the saved color for the button
   button.style.backgroundColor = book.color;
+  
   bookList.appendChild(button);
 });
 
