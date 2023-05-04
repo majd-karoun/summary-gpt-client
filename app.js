@@ -122,7 +122,7 @@ savedBooks.forEach((book) => {
   // Use the saved color for the button
   button.style.backgroundColor = book.color;
   
-  bookList.prepend(button); // Use prepend() instead of appendChild() to add the button to the beginning of the list
+  bookList.append(button);
 });
 
 // Generate random dark color
