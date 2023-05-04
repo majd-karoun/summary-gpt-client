@@ -126,6 +126,7 @@ button{
     border-radius: 5px;
     border: solid 5px rgb(195, 193, 193);
     animation: fadeIn 0.3s ease-out;
+    overflow: hidden;
   }
 
   .card:hover {
@@ -233,6 +234,11 @@ button{
 
   #delete-btn{
     background-color: rgb(197, 30, 30);
+    color: white;
+  }
+
+  #save-btn{
+    background-color: #186e40;
     color: white;
   }
   #delete-btn:hover{

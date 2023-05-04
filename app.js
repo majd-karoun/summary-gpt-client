@@ -90,8 +90,8 @@ generateBtn.addEventListener("click", async (e) => {
     deleteBtn.style.display = "none";
   } else {
     saveBtn.style.display = "block";
-    closeModalBtn.style.display = "none";
-    deleteBtn.style.display = "block";
+    closeModalBtn.style.display = "block";
+    deleteBtn.style.display = "none";
   }
 });
 
