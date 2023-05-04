@@ -55,7 +55,7 @@ bookTitleElement.addEventListener("DOMSubtreeModified", () => {
 
 async function fetchSummary(bookTitle, language) {
   const response = await fetch(
-    "https://summary-gpt.onrender.com/api/summarize",
+    "http://localhost:3000/api/summarize",
     {
       method: "POST",
       headers: {
@@ -84,7 +84,7 @@ generateBtn.addEventListener("click", async (e) => {
   summaryElement.innerHTML = summary;
   bookTitleElement.innerHTML = bookTitle;
   // Show the Close button only if the book title is empty
-  if (!bookTitle) {
+  if (!bookTitle || summary.includes('SummaryError:')) {
     saveBtn.style.display = "none";
     closeModalBtn.style.display = "block";
     deleteBtn.style.display = "none";
