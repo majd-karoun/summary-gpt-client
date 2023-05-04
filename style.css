@@ -118,11 +118,11 @@ button{
 
   .card {
     height: 200px;
-    width: 150px;
+    width: 160px;
     color: white;
     font-weight: 400;
     font-size: 1.1rem;
-    word-wrap: break-word;
+    padding: 10px;
     border-radius: 5px;
     border: solid 5px rgb(195, 193, 193);
     animation: fadeIn 0.3s ease-out;
