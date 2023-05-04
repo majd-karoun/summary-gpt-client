@@ -16,6 +16,18 @@ const languagePicker = document.getElementById('language-picker');
 // Retrieve saved books from localStorage
 const savedBooks = JSON.parse(localStorage.getItem('books')) || [];
 
+let bookTitle;
+// Update bookTitle when input value changes
+bookInput.addEventListener('change', () => {
+    bookTitle = bookInput.value;
+});    
+
+// Update bookTitle when a book summary is clicked on
+bookTitleElement.addEventListener('DOMSubtreeModified', () => {
+  bookTitle = bookTitleElement.innerHTML;
+});
+
+
 async function fetchSummary(bookTitle, language) {
   const response = await fetch('https://summary-gpt.onrender.com/api/summarize', {
     method: 'POST',
@@ -44,9 +56,16 @@ spinner.style.display = "none";
 summaryModal.style.display = 'block';
 summaryElement.innerHTML = summary;
 bookTitleElement.innerHTML = bookTitle;
- // Show the Save button and hide the Close button
-saveBtn.style.display = 'block';
-closeModalBtn.style.display = 'none';
+  // Show the Close button only if the book title is empty
+  if (!bookTitle) {
+    saveBtn.style.display = 'none';
+    closeModalBtn.style.display = 'block';
+    deleteBtn.style.display = 'none';
+  } else {
+    saveBtn.style.display = 'block';
+    closeModalBtn.style.display = 'none';
+    deleteBtn.style.display = 'block';
+  }
 });
 
 
@@ -61,11 +80,7 @@ function updateMyBooksLabel() {
 updateMyBooksLabel();
 
 
-let bookTitle;
-// Update bookTitle when input value changes
-bookInput.addEventListener('change', () => {
-    bookTitle = bookInput.value;
-});    
+
 
 
 // Add a new book to localStorage
@@ -118,9 +133,23 @@ saveBtn.addEventListener('click', () => {
     location.reload();
     updateMyBooksLabel();
   }
-
 });
 
+deleteBtn.addEventListener('click', () => {
+  const confirmDelete = confirm("Are you sure you want to delete this book summary?");
+  
+  if (confirmDelete) {
+      const bookIndex = savedBooks.findIndex((book) => book.summary === bookTitleElement.innerHTML);
+      if (bookIndex !== -1) {
+        savedBooks.splice(bookIndex, 1);
+        localStorage.setItem('books', JSON.stringify(savedBooks));
+        const buttonToRemove = bookList.children[bookIndex];
+        bookList.removeChild(buttonToRemove);
+        summaryModal.style.display = 'none';
+      }
+      updateMyBooksLabel();
+  }
+});
 
 
 
