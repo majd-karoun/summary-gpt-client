@@ -74,6 +74,10 @@ button{
   background-color: #186e40;
 }
 
+.my-books-label{
+  color: rgb(192, 189, 189);
+}
+
 #book-list {
     display: flex;
     flex-wrap: wrap;

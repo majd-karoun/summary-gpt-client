@@ -9,6 +9,19 @@ let saveBtn = document.getElementById('save-btn');
 let deleteBtn = document.getElementById('delete-btn');
 const spinner = document.getElementById("spinner");
 const bookList = document.getElementById('book-list');
+const myBooksLabel = document.getElementById('my-books-label');
+// Retrieve saved books from localStorage
+const savedBooks = JSON.parse(localStorage.getItem('books')) || [];
+
+//hide "My Books" label if no books yet saved
+function updateMyBooksLabel() {
+  if (savedBooks.length === 0) {
+    myBooksLabel.style.display = 'none';
+  } else {
+    myBooksLabel.style.display = 'block';
+  }
+}
+updateMyBooksLabel();
 
 
 let bookTitle;
@@ -16,8 +29,7 @@ let bookTitle;
 bookInput.addEventListener('change', () => {
     bookTitle = bookInput.value;
 });
-// Retrieve saved books from localStorage
-const savedBooks = JSON.parse(localStorage.getItem('books')) || [];
+
 
 // Add a new book to localStorage
 function saveBook(title, summary, color) {
@@ -77,6 +89,7 @@ saveBtn.addEventListener('click', () => {
     saveBook(bookTitle, summary, color);
     // Refresh the book list
     location.reload();
+    updateMyBooksLabel();
   }
 
 });
@@ -99,6 +112,7 @@ deleteBtn.addEventListener('click', () => {
         bookList.removeChild(buttonToRemove);
         summaryModal.style.display = 'none';
       }
+      updateMyBooksLabel();
   }
 });
 
