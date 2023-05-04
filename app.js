@@ -27,6 +27,18 @@ function updateMyBooksLabel() {
 updateMyBooksLabel();
 
 let bookTitle;
+
+const typewriterText = "Enter book title here...";
+
+function typeWriter(text, targetElement, index = 0) {
+  if (index < text.length) {
+    targetElement.placeholder += text.charAt(index);
+    setTimeout(() => typeWriter(text, targetElement, index + 1), 100);
+  }
+}
+
+const titleInput = document.getElementById("book-title-input");
+typeWriter(typewriterText, titleInput);
 // Update bookTitle when input value changes
 bookInput.addEventListener("change", () => {
   bookTitle = bookInput.value;
