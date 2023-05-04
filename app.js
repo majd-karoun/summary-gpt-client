@@ -73,16 +73,21 @@ async function fetchSummary(bookTitle, language) {
   }
 }
 
+
 generateBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   spinner.style.display = "block"; // show the spinner
   bookTitle = bookInput.value; // Get current input value
   const language = languagePicker.value; // Get the selected language
+
+  // Show the modal instantly and set the book title
+  summaryModal.style.display = "block";
+  bookTitleElement.innerHTML = bookTitle;
+  
   const summary = await fetchSummary(bookTitle, language); // Pass the language to fetchSummary
   spinner.style.display = "none";
-  summaryModal.style.display = "block";
   summaryElement.innerHTML = summary;
-  bookTitleElement.innerHTML = bookTitle;
+
   // Show the Close button only if the book title is empty
   if (!bookTitle || summary.includes('SummaryError:')) {
     saveBtn.style.display = "none";
@@ -94,6 +99,7 @@ generateBtn.addEventListener("click", async (e) => {
     deleteBtn.style.display = "none";
   }
 });
+
 
 // Add a new book to localStorage
 function saveBook(title, summary, color) {
