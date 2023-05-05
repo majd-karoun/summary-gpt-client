@@ -84,10 +84,11 @@ generateBtn.addEventListener("click", async (e) => {
   summaryElement.innerHTML = summary;
   bookTitleElement.innerHTML = bookTitle;
   // Show the Close button only if the book title is empty
-  if (!bookTitle || summary.includes('SummaryError:')) {
+  if (!bookTitle || summary.includes('SummaryError') || summary.includes('Summary: Error')  ) {
     saveBtn.style.display = "none";
     closeModalBtn.style.display = "block";
     deleteBtn.style.display = "none";
+    
   } else {
     saveBtn.style.display = "block";
     closeModalBtn.style.display = "block";
@@ -196,3 +197,22 @@ closeModalBtn.addEventListener("click", () => {
     summaryElement.innerHTML = "";
   }, 500);
 });
+
+
+closeBtn.addEventListener("click", () => {
+  closeModalAndShowDeleteButton();
+});
+
+closeModalBtn.addEventListener("click", () => {
+  closeModalAndShowDeleteButton();
+});
+
+function closeModalAndShowDeleteButton() {
+  summaryModal.classList.add("modal-out");
+  setTimeout(() => {
+    summaryModal.style.display = "none";
+    summaryModal.classList.remove("modal-out");
+    summaryElement.innerHTML = "";
+    deleteBtn.style.display = "block"; // Show the deleteBtn after the modal is closed
+  }, 500);
+}
