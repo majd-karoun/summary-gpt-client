@@ -49,7 +49,7 @@ bookInput.addEventListener("input", () => {
 });
 
 // Update bookTitle when a book summary is clicked on
-bookTitleElement.addEventListener("DOMSubtreeModified", () => {
+bookTitleElement.addEventListener("change", () => {
   bookTitle = bookTitleElement.innerHTML;
 });
 
@@ -80,6 +80,9 @@ generateBtn.addEventListener("click", async (e) => {
   const language = languagePicker.value; // Get the selected language
   const summary = await fetchSummary(bookTitle, language); // Pass the language to fetchSummary
   spinner.style.display = "none";
+  summaryModal.style.display = "none";
+  summaryElement.innerHTML = " ";
+  bookTitleElement.innerHTML = " ";
   summaryModal.style.display = "block";
   summaryElement.innerHTML = summary;
   bookTitleElement.innerHTML = bookTitle;
@@ -90,6 +93,7 @@ generateBtn.addEventListener("click", async (e) => {
     deleteBtn.style.display = "none";
     
   } else {
+    
     saveBtn.style.display = "block";
     closeModalBtn.style.display = "block";
     deleteBtn.style.display = "none";
@@ -128,9 +132,9 @@ savedBooks.forEach((book) => {
 
 // Generate random dark color
 function generateRandomColor() {
-  const red = Math.floor(Math.random() * 51);
-  const green = Math.floor(Math.random() * 51);
-  const blue = Math.floor(Math.random() * 51);
+  const red = Math.floor(Math.random() * 70);
+  const green = Math.floor(Math.random() * 70);
+  const blue = Math.floor(Math.random() * 70);
   return `rgb(${red}, ${green}, ${blue})`;
 }
 
