@@ -132,9 +132,9 @@ savedBooks.forEach((book) => {
 
 // Generate random dark color
 function generateRandomColor() {
-  const red = Math.floor(Math.random() * 70);
-  const green = Math.floor(Math.random() * 70);
-  const blue = Math.floor(Math.random() * 70);
+  const red = Math.floor(Math.random() * 90);
+  const green = Math.floor(Math.random() * 90);
+  const blue = Math.floor(Math.random() * 90);
   return `rgb(${red}, ${green}, ${blue})`;
 }
 
