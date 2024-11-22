@@ -55,7 +55,7 @@ bookTitleElement.addEventListener("change", () => {
 
 async function fetchSummary(bookTitle, language) {
   const response = await fetch(
-    "https://summary-gpt-client-66725851fa58.herokuapp.com/",
+    "https://summary-gpt.onrender.com",
     {
       method: "POST",
       headers: {
